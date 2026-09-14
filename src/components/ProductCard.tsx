@@ -1,0 +1,5 @@
+import { ArrowUpRight, ZoomIn } from 'lucide-react';
+import type { Product } from '../data/products';
+import { formatPrice } from '../utils/whatsapp';
+import { WhatsAppButton, productMessage } from './WhatsAppButton';
+export function ProductCard({ product, onSelect }: { product: Product; onSelect: (p: Product)=>void }) { return <article className="product-card"><button className="product-image" onClick={()=>onSelect(product)} aria-label={`Ver detalhes de ${product.name}`}><img src={product.thumbnail} alt={product.name} width={product.width} height={product.height} loading="lazy" decoding="async"/><span className="zoom-icon"><ZoomIn size={18}/></span></button><div className="product-info"><span className="product-category">{product.category}</span><h3><button onClick={()=>onSelect(product)}>{product.name}<ArrowUpRight size={15}/></button></h3><p className="price">{formatPrice(product.price)}{product.each&&<small> / cada</small>}</p><WhatsAppButton message={productMessage(product)} className="product-cta">Quero este produto</WhatsAppButton></div></article>; }
